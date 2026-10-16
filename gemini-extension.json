@@ -1,0 +1,11 @@
+{
+  "name": "breakpass",
+  "version": "1.0.0",
+  "description": "Let your AI agent reach you by WhatsApp, SMS or phone call, and see if you got it.",
+  "mcpServers": {
+    "breakpass": {
+      "httpUrl": "https://mcp.breakpass.ai/mcp"
+    }
+  },
+  "contextFileName": "GEMINI.md"
+}
