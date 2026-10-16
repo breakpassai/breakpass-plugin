@@ -1,10 +1,14 @@
 # Grok Bot template: instructions
 
-Published from Grok on launch day: Share, Create template, Public link. The template carries these instructions and the connection to the BreakPass MCP server. **No API keys, no tokens, no internal URLs, no phone numbers.** The only URL in it is the public connector address, `https://mcp.breakpass.ai/mcp`, which the user adds in Grok Bot and signs in to in a browser.
+A Grok template keeps instructions, skills and routines, but **not MCP servers**: whoever installs it has to add the server again. So this template carries the escalation instructions below and a first-run step that adds the BreakPass connector with the user's yes. Published from Grok on launch day (Share, Create template, Public link). **No API keys, no tokens, no internal URLs, no phone numbers.** The only URL in it is the public connector address, `https://mcp.breakpass.ai/mcp`.
 
 ## Name and description
 
 **BreakPass alerts.** Your Grok bot reaches you by WhatsApp, SMS or phone call when something needs you, and checks whether you got it.
+
+## First run (put this first in the template)
+
+On the first run, check whether you already have a custom MCP server named BreakPass. If not, ask the user: "May I add the BreakPass connector so I can reach you by WhatsApp, SMS or phone call?" After a yes, register a custom MCP server (say "custom" so the catalog is not used) named BreakPass at `https://mcp.breakpass.ai/mcp`. Show the name and address and ask them to confirm. A connect card appears: the user clicks Authorize and signs in to BreakPass in their browser (Google or the emailed 6-digit code), then clicks Allow. You never see their password or code. Sign-in for custom servers is in beta: if the card stalls, ask the user to use Reopen or Retry; if it still fails, say so and stop. Without a BreakPass account, say that a paid account is needed (https://breakpass.ai) and stop.
 
 ## Instructions (paste into the template)
 
