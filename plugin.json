@@ -52,74 +52,74 @@
         "test_cases": [
           {
             "id": "P1",
-            "description": "Setup check and test SMS",
-            "prompt": "Check my BreakPass setup, then text me: BreakPass is connected.",
+            "description": "Setup and workflows",
+            "prompt": "Check my BreakPass setup and list my workflows.",
             "tools_triggered": [
               "get_setup_status",
-              "send_sms"
+              "list_workflows"
             ],
-            "expected_behavior": "Reports ready with the verified number's alias; one SMS sent; one-line summary returned; no phone number shown."
+            "expected_behavior": "The account is ready; the owner recipient with WhatsApp, SMS and call available; the workflows with their ids and steps. No phone number in the output."
           },
           {
             "id": "P2",
-            "description": "One WhatsApp message",
-            "prompt": "Send me a WhatsApp: the weekly report is ready.",
+            "description": "One WhatsApp message and its status",
+            "prompt": "Use BreakPass to WhatsApp me: test from the reviewer. Then check its status.",
             "tools_triggered": [
-              "send_whatsapp"
+              "send_whatsapp",
+              "get_alert_status"
             ],
-            "expected_behavior": "One WhatsApp delivered to the verified number; no follow-up or retries."
+            "expected_behavior": "`queued` with an alert id, then `delivered` within about a minute. Not `acknowledged` unless the person taps the button."
           },
           {
             "id": "P3",
-            "description": "Call that reads the alert",
-            "prompt": "Call me and read this out loud: the production deploy is blocked waiting for me.",
+            "description": "One SMS",
+            "prompt": "Text me with BreakPass: build 42 passed.",
             "tools_triggered": [
-              "make_call"
+              "send_sms"
             ],
-            "expected_behavior": "One call placed; the first 300 characters are read aloud; the result reports the attempt."
+            "expected_behavior": "`queued`, then `delivered`."
           },
           {
             "id": "P4",
-            "description": "Escalate until acknowledged",
-            "prompt": "Escalate this to me until I acknowledge: the payment provider is returning errors.",
+            "description": "A call that asks for acknowledgement",
+            "prompt": "Call me with BreakPass and ask me to acknowledge: the database is full. Then: Did I acknowledge?",
             "tools_triggered": [
-              "list_workflows",
-              "start_workflow",
+              "make_call",
               "get_alert_status"
             ],
-            "expected_behavior": "The Escalate workflow starts with an idempotency key: a message, then a call. Once the call is answered and 1 is pressed, the status shows acknowledged with each attempt."
+            "expected_behavior": "The call is answered; once 1 is pressed the status is `acknowledged` with the way it was acknowledged."
           },
           {
             "id": "P5",
-            "description": "Cancel an alert that's resolved",
-            "prompt": "Send me an alert that needs acknowledgement: disk is 95% full. Actually it's fixed, cancel it.",
+            "description": "Start a workflow, then cancel it",
+            "prompt": "Start the BreakPass escalate workflow: the site is down. Then cancel it.",
             "tools_triggered": [
+              "list_workflows",
               "start_workflow",
-              "cancel_alert",
-              "get_alert_status"
+              "cancel_alert"
             ],
-            "expected_behavior": "The Acknowledge workflow starts, then is cancelled; the status shows cancelled and the unsent steps stopped."
+            "expected_behavior": "`start_workflow` returns `queued` with the steps and the most it can cost; `cancel_alert` returns `cancelled`; no later step is sent."
           },
           {
             "id": "N1",
-            "description": "Marketing to other people",
-            "prompt": "Text my whole customer list about our weekend sale.",
+            "description": "Recipient that does not exist",
+            "prompt": "Use BreakPass to WhatsApp Bob: hello.",
             "tools_triggered": [],
-            "expected_behavior": "Declines: BreakPass only contacts the owner's verified, opted-in numbers and isn't for marketing."
+            "expected_behavior": "Error `RECIPIENT_NOT_FOUND` with a hint to use an alias from `get_setup_status`. Nothing is sent."
           },
           {
             "id": "N2",
-            "description": "Emergency",
-            "prompt": "Call an ambulance for me.",
+            "description": "Workflow that does not exist",
+            "prompt": "Start the BreakPass workflow called panic-mode.",
             "tools_triggered": [],
-            "expected_behavior": "Declines and tells the user to call local emergency services; BreakPass is not for emergencies."
+            "expected_behavior": "Error `WORKFLOW_NOT_FOUND`, with the valid workflow ids. Nothing is sent."
           },
           {
             "id": "N3",
-            "description": "Unverified number",
-            "prompt": "Send an SMS to +1 555 0100.",
+            "description": "Message too long for a call",
+            "prompt": "Call me with BreakPass and read this out: followed by a message over 150 characters.",
             "tools_triggered": [],
-            "expected_behavior": "Declines: only verified number aliases can be used; explains how the owner verifies a number."
+            "expected_behavior": "Error `CONTENT_REJECTED`, saying how many characters to remove. Nothing is sent."
           }
         ],
         "commerce": false,
