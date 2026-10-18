@@ -50,6 +50,8 @@ ok(oa.defaultPrompts.length <= 3, "openai: more than 3 default prompts");
 const price = /\b(price|prices|pricing|plan|plans|subscription|subscribe|trial|free|discount|promo|promotion|offer|checkout|coupon)\b|\$\d/i;
 for (const [k, v] of Object.entries({ description: oa.description, shortDescription: oa.shortDescription, prompts: oa.defaultPrompts.join(" ") }))
   ok(!price.test(v), `openai ${k}: price, plan, trial or promo wording`);
+ok(Array.isArray(oa.publication?.countries) && oa.publication.countries.length > 100 && oa.publication.countries.every((c) => /^[A-Z]{2}$/.test(c)), "openai: publication.countries must be a list of ISO 3166 alpha-2 codes");
+for (const c of ["AE", "CN", "CU", "IR", "KP", "RU", "BY"]) ok(!oa.publication?.countries?.includes(c), `openai: ${c} must not be in publication.countries`);
 const root = json("plugin.json").interface;
 ok(root.shortDescription === oa.shortDescription && root.displayName === oa.displayName, "plugin.json interface differs from listing/openai.json");
 ok(JSON.stringify(root.defaultPrompts) === JSON.stringify(oa.defaultPrompts), "plugin.json default prompts differ from listing/openai.json");
