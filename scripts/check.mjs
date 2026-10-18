@@ -43,18 +43,40 @@ for (const f of ["plugin.json", ".cursor-plugin/plugin.json", ".claude-plugin/pl
   ok(p.license === "MIT", `${f}: license`);
 }
 
-const oa = json("listing/openai.json");
-ok(oa.displayName.length <= 30, "openai: displayName > 30");
-ok(oa.shortDescription.length <= 30, `openai: shortDescription ${oa.shortDescription.length} > 30`);
-ok(oa.defaultPrompts.length <= 3, "openai: more than 3 default prompts");
+const plugin = json("plugin.json");
+const oai = plugin.extensions?.["com.openai"] ?? {};
+const oa = oai.interface ?? {};
+ok(oa.displayName?.length > 0 && oa.displayName.length <= 30, "openai: displayName 1 to 30");
+ok(oa.shortDescription?.length > 0 && oa.shortDescription.length <= 30, `openai: shortDescription ${oa.shortDescription?.length} > 30`);
+ok(oa.longDescription?.length > 0 && oa.longDescription.length <= 4000, `openai: longDescription ${oa.longDescription?.length} > 4000`);
+ok(oa.developerName?.length > 0 && oa.developerName.length <= 80, "openai: developerName");
+ok(/^#[0-9A-Fa-f]{6}$/.test(oa.brandColor ?? ""), "openai: brandColor must be a six-digit hex");
+ok(!("screenshots" in oa), "openai: no screenshots (the portal rejects them without a UI template)");
+ok((oa.defaultPrompt ?? []).length >= 1 && oa.defaultPrompt.length <= 3, "openai: 1 to 3 default prompts");
+ok(new Set(oa.defaultPrompt).size === oa.defaultPrompt.length, "openai: default prompts must be unique");
+for (const p of oa.defaultPrompt ?? []) ok(p.length <= 128 && !p.includes("\n") && !p.includes("@"), `openai: default prompt over 128, multi-line or with an @: ${p}`);
+for (const c of oa.capabilities ?? []) ok(c.length <= 120, "openai: capability over 120");
 const price = /\b(price|prices|pricing|plan|plans|subscription|subscribe|trial|free|discount|promo|promotion|offer|checkout|coupon)\b|\$\d/i;
-for (const [k, v] of Object.entries({ description: oa.description, shortDescription: oa.shortDescription, prompts: oa.defaultPrompts.join(" ") }))
-  ok(!price.test(v), `openai ${k}: price, plan, trial or promo wording`);
-ok(Array.isArray(oa.publication?.countries) && oa.publication.countries.length > 100 && oa.publication.countries.every((c) => /^[A-Z]{2}$/.test(c)), "openai: publication.countries must be a list of ISO 3166 alpha-2 codes");
-for (const c of ["AE", "CN", "CU", "IR", "KP", "RU", "BY"]) ok(!oa.publication?.countries?.includes(c), `openai: ${c} must not be in publication.countries`);
-const root = json("plugin.json").interface;
-ok(root.shortDescription === oa.shortDescription && root.displayName === oa.displayName, "plugin.json interface differs from listing/openai.json");
-ok(JSON.stringify(root.defaultPrompts) === JSON.stringify(oa.defaultPrompts), "plugin.json default prompts differ from listing/openai.json");
+for (const [k, v] of Object.entries({ longDescription: oa.longDescription, shortDescription: oa.shortDescription, prompts: (oa.defaultPrompt ?? []).join(" "), capabilities: (oa.capabilities ?? []).join(" ") }))
+  ok(!price.test(v ?? ""), `openai ${k}: price, plan, trial or promo wording`);
+for (const f of ["logo", "composerIcon", "onboardingSkill"]) ok(oa[f] && existsSync(oa[f]), `openai: ${f} file missing`);
+const cases = oai.review?.test_cases ?? [];
+ok(cases.filter((c) => c.id.startsWith("P")).length === 5 && cases.filter((c) => c.id.startsWith("N")).length === 3, "openai: 5 positive and 3 negative test cases");
+for (const c of cases) ok(c.prompt && Array.isArray(c.tools_triggered) && c.expected_behavior, `openai test case ${c.id}: prompt, tools_triggered, expected_behavior`);
+ok(oai.review && !("test_credentials" in oai.review) && !("reviewer_instructions" in oai.review), "openai: reviewer credentials must not be in plugin.json");
+ok(oai.review?.commerce === false, "openai: review.commerce must be false");
+ok(oai.publication?.release_notes?.length > 0, "openai: release_notes");
+ok(Array.isArray(oai.publication?.countries) && oai.publication.countries.length > 100 && oai.publication.countries.every((c) => /^[A-Z]{2}$/.test(c)), "openai: publication.countries must be a list of ISO 3166 alpha-2 codes");
+for (const c of ["AE", "CN", "CU", "IR", "KP", "RU", "BY"]) ok(!oai.publication?.countries?.includes(c), `openai: ${c} must not be in publication.countries`);
+const ann = json("listing/openai-tool-annotations.json");
+const TOOLS = ["get_setup_status", "list_workflows", "get_alert_status", "send_whatsapp", "send_sms", "make_call", "start_workflow", "cancel_alert"];
+ok(JSON.stringify(ann.map((a) => a.tool).sort()) === JSON.stringify([...TOOLS].sort()), "openai-tool-annotations: all eight tools, each once");
+for (const a of ann) ok(a.justification?.length > 20 && typeof a.readOnlyHint === "boolean" && typeof a.openWorldHint === "boolean" && typeof a.destructiveHint === "boolean", `openai-tool-annotations ${a.tool}: justification and three hints`);
+ok(ann.find((a) => a.tool === "cancel_alert")?.destructiveHint === true && ann.filter((a) => a.readOnlyHint).length === 3, "openai-tool-annotations: cancel_alert is the destructive one; three read-only tools");
+const cur = json(".cursor-plugin/plugin.json");
+ok(cur.name === "breakpass" && cur.logo && existsSync(cur.logo), "cursor: name and committed logo");
+ok(cur.homepage.includes("utm_source=store_cursor"), "cursor: homepage utm_source");
+ok(reg.websiteUrl.includes("utm_source=mcp_official_registry"), "server.json: websiteUrl utm_source");
 
 const claude = readFileSync("listing/claude.md", "utf8");
 const oneLiner = /One-liner \| (.+) \|/.exec(claude)?.[1] ?? "";
@@ -66,7 +88,7 @@ const skill = readFileSync("skills/get-started/SKILL.md", "utf8");
 ok(/acknowledgement means your owner saw the alert/i.test(skill) && /not approval/i.test(skill), "skill: acknowledgement is not approval");
 ok(/not for emergencies/i.test(skill), "skill: not for emergencies");
 const claw = readFileSync("clawhub/breakpass/SKILL.md", "utf8");
-ok(/paid BreakPass account/i.test(claw) && /\$7 a month/.test(claw), "clawhub: must state the paid account and its cost");
+ok(/paid BreakPass account/i.test(claw) && /\$5 a month/.test(claw) && /\$7 month to month/.test(claw), "clawhub: must state the paid account and its cost");
 ok(/license: MIT-0/.test(claw), "clawhub: MIT-0");
 
 const secret = /(sk-[A-Za-z0-9]{16,}|xox[abp]-|ghp_[A-Za-z0-9]{20,}|Bearer\s+[A-Za-z0-9._-]{20,}|-----BEGIN|\+\d{9,15})/;
@@ -75,7 +97,9 @@ for (const f of files.filter((f) => /\.(md|json|mjs)$/.test(f) && f !== "scripts
 for (const f of files.filter((f) => /\.(md|json)$/.test(f)))
   ok(!/credit/i.test(readFileSync(f, "utf8")), `${f}: the word "credit(s)" is not used`);
 
-for (const f of ["assets/logo-512.png", "assets/composer-icon.png", "clawhub/breakpass/LICENSE"]) ok(existsSync(f), `${f} is missing`);
+const clawDesc = /^description: (.*)$/m.exec(claw)?.[1] ?? "";
+ok(clawDesc.length > 0 && clawDesc.length < 1024 && !/[<>]/.test(clawDesc), "clawhub: description under 1024 characters, no angle brackets");
+for (const f of ["assets/logo-512.png", "assets/logo.png", "assets/icon.png", "assets/composer-icon.png", "clawhub/breakpass/LICENSE"]) ok(existsSync(f), `${f} is missing`);
 ok(existsSync("LICENSE") && /MIT License/.test(readFileSync("LICENSE", "utf8")), "LICENSE (MIT)");
 
 if (fail.length) {

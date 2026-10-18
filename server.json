@@ -2,9 +2,9 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "ai.breakpass/breakpass",
   "title": "BreakPass",
-  "description": "Your AI agent alerts you by WhatsApp, SMS or phone call, and reports whether you got it.",
+  "description": "Your AI agents reach you by call, SMS or WhatsApp, escalating until you acknowledge.",
   "version": "1.0.0",
-  "websiteUrl": "https://breakpass.ai",
+  "websiteUrl": "https://breakpass.ai/docs/mcp/?utm_source=mcp_official_registry&utm_medium=directory&utm_campaign=mcp_launch",
   "repository": {
     "url": "https://github.com/breakpassai/breakpass-plugin",
     "source": "github"
