@@ -4,6 +4,8 @@ Let your AI agent reach you by **WhatsApp, SMS or phone call**, and see whether 
 
 This repository holds the plugin and extension files only: manifests, a skill and listing text. The BreakPass server is not in this repository. It is a remote MCP server at `https://mcp.breakpass.ai/mcp` (Streamable HTTP, OAuth 2.1 with PKCE).
 
+**Launch note:** the endpoint above goes live at BreakPass's public launch. Until then it may not answer; the manifests already point at the production address.
+
 **You need a paid BreakPass account** ([pricing](https://breakpass.ai/pricing/)). There is no free tier. Sign in happens in your browser when your agent connects; this repository contains no keys or tokens.
 
 ## Install
