@@ -24,29 +24,29 @@
     "tool": "send_whatsapp",
     "readOnlyHint": false,
     "openWorldHint": true,
-    "destructiveHint": false,
-    "justification": "Sends one WhatsApp message to the owner's verified number: it contacts a real person outside BreakPass and spends balance. It deletes or overwrites nothing."
+    "destructiveHint": true,
+    "justification": "Sends one WhatsApp message to the owner's verified number. It contacts a real person outside BreakPass and spends balance, and a sent message cannot be recalled, so it is marked destructive. It deletes or overwrites nothing in BreakPass."
   },
   {
     "tool": "send_sms",
     "readOnlyHint": false,
     "openWorldHint": true,
-    "destructiveHint": false,
-    "justification": "Sends one SMS to a verified number (outside world, spends balance). Nothing is deleted or overwritten."
+    "destructiveHint": true,
+    "justification": "Sends one SMS to a verified number. It contacts a real person outside BreakPass and spends balance, and a sent text cannot be recalled, so it is marked destructive. It deletes or overwrites nothing in BreakPass."
   },
   {
     "tool": "make_call",
     "readOnlyHint": false,
     "openWorldHint": true,
-    "destructiveHint": false,
-    "justification": "Places one phone call that reads the message aloud (outside world, spends balance). Nothing is deleted or overwritten."
+    "destructiveHint": true,
+    "justification": "Places one phone call that reads the message aloud. It contacts a real person outside BreakPass and spends balance, and a call cannot be taken back, so it is marked destructive. It deletes or overwrites nothing in BreakPass."
   },
   {
     "tool": "start_workflow",
     "readOnlyHint": false,
     "openWorldHint": true,
-    "destructiveHint": false,
-    "justification": "Starts a server-side workflow that messages and may call the owner until acknowledged (outside world, spends balance). Idempotent with an idempotency_key; nothing is deleted."
+    "destructiveHint": true,
+    "justification": "Starts a server-side workflow that messages and may call the owner until acknowledged. It contacts a real person outside BreakPass and spends balance, and messages already sent cannot be recalled, so it is marked destructive. Idempotent with an idempotency_key; nothing in BreakPass is deleted."
   },
   {
     "tool": "cancel_alert",
