@@ -1,0 +1,38 @@
+{
+  "name": "breakpass",
+  "version": "1.0.0",
+  "description": "Let your AI agent reach you by WhatsApp, SMS or phone call, and see if you got it.",
+  "author": {
+    "name": "X Labs L.L.C-FZ",
+    "url": "https://xlabs.ventures"
+  },
+  "homepage": "https://breakpass.ai",
+  "license": "MIT",
+  "keywords": [
+    "alerts",
+    "notifications",
+    "whatsapp",
+    "sms",
+    "phone",
+    "mcp",
+    "escalation"
+  ],
+  "repository": "https://github.com/breakpassai/breakpass-plugin",
+  "mcpServers": "./mcp.json",
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "BreakPass",
+    "shortDescription": "Agents that call you",
+    "category": "Productivity",
+    "websiteURL": "https://breakpass.ai",
+    "supportURL": "https://breakpass.ai/support/",
+    "privacyPolicyURL": "https://breakpass.ai/privacy/",
+    "termsOfServiceURL": "https://breakpass.ai/terms/",
+    "defaultPrompts": [
+      "Ask me to acknowledge via BreakPass when the report is ready.",
+      "WhatsApp me via BreakPass when the build finishes.",
+      "Escalate to me via BreakPass if the server goes down."
+    ],
+    "logo": "./assets/logo-512.png"
+  }
+}

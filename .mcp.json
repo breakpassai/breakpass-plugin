@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "breakpass": {
+      "type": "http",
+      "url": "https://mcp.breakpass.ai/mcp"
+    }
+  }
+}
