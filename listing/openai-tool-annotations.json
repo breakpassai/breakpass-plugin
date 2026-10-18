@@ -1,0 +1,58 @@
+[
+  {
+    "tool": "get_setup_status",
+    "readOnlyHint": true,
+    "openWorldHint": false,
+    "destructiveHint": false,
+    "justification": "Reads the signed-in account's setup state and number aliases. Sends nothing, changes nothing, stays inside BreakPass."
+  },
+  {
+    "tool": "list_workflows",
+    "readOnlyHint": true,
+    "openWorldHint": false,
+    "destructiveHint": false,
+    "justification": "Reads the saved Inform, Acknowledge and Escalate workflows. No side effects."
+  },
+  {
+    "tool": "get_alert_status",
+    "readOnlyHint": true,
+    "openWorldHint": false,
+    "destructiveHint": false,
+    "justification": "Reads delivery and acknowledgement history of alerts this client started. No side effects."
+  },
+  {
+    "tool": "send_whatsapp",
+    "readOnlyHint": false,
+    "openWorldHint": true,
+    "destructiveHint": false,
+    "justification": "Sends one WhatsApp message to the owner's verified number: it contacts a real person outside BreakPass and spends balance. It deletes or overwrites nothing."
+  },
+  {
+    "tool": "send_sms",
+    "readOnlyHint": false,
+    "openWorldHint": true,
+    "destructiveHint": false,
+    "justification": "Sends one SMS to a verified number (outside world, spends balance). Nothing is deleted or overwritten."
+  },
+  {
+    "tool": "make_call",
+    "readOnlyHint": false,
+    "openWorldHint": true,
+    "destructiveHint": false,
+    "justification": "Places one phone call that reads the message aloud (outside world, spends balance). Nothing is deleted or overwritten."
+  },
+  {
+    "tool": "start_workflow",
+    "readOnlyHint": false,
+    "openWorldHint": true,
+    "destructiveHint": false,
+    "justification": "Starts a server-side workflow that messages and may call the owner until acknowledged (outside world, spends balance). Idempotent with an idempotency_key; nothing is deleted."
+  },
+  {
+    "tool": "cancel_alert",
+    "readOnlyHint": false,
+    "openWorldHint": true,
+    "destructiveHint": true,
+    "justification": "Stops the unsent steps of an alert, which cannot be undone (hence destructive), and may affect a call already ringing (open world). Safe to call twice."
+  }
+]

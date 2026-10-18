@@ -1,24 +1,24 @@
 {
   "name": "breakpass",
+  "displayName": "BreakPass",
+  "description": "Let your Cursor agent reach you by WhatsApp, SMS or a phone call when it's blocked or something risky comes up, escalating until you acknowledge.",
   "version": "1.0.0",
-  "description": "Let your AI agent reach you by WhatsApp, SMS or phone call, and see if you got it.",
   "author": {
     "name": "X Labs L.L.C-FZ",
-    "url": "https://xlabs.ventures"
+    "email": "hello@breakpass.ai"
   },
-  "homepage": "https://breakpass.ai",
-  "license": "MIT",
-  "keywords": [
-    "alerts",
-    "notifications",
-    "whatsapp",
-    "sms",
-    "phone",
-    "mcp",
-    "escalation"
-  ],
+  "publisher": "X Labs L.L.C-FZ",
+  "homepage": "https://breakpass.ai/?utm_source=store_cursor",
   "repository": "https://github.com/breakpassai/breakpass-plugin",
-  "logo": "assets/logo-512.png",
-  "mcpServers": "./mcp.json",
-  "skills": "./skills/"
+  "license": "MIT",
+  "logo": "assets/logo.svg",
+  "keywords": [
+    "notifications",
+    "alerts",
+    "human-in-the-loop",
+    "phone",
+    "sms",
+    "whatsapp",
+    "on-call"
+  ]
 }

@@ -1,7 +1,7 @@
 {
   "name": "breakpass",
   "version": "1.0.0",
-  "description": "Let your AI agent reach you by WhatsApp, SMS or phone call, and see if you got it.",
+  "description": "Let Claude reach you by WhatsApp, SMS or a phone call when something needs you, escalating until you acknowledge.",
   "author": {
     "name": "X Labs L.L.C-FZ",
     "url": "https://xlabs.ventures"
