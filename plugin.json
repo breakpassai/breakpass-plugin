@@ -1,7 +1,8 @@
 {
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "breakpass",
   "version": "1.0.0",
-  "description": "Let your AI agent reach you by WhatsApp, SMS or phone call, and see if you got it.",
+  "description": "Let your AI agent reach you by WhatsApp, SMS or phone call, and see if you got it. Requires a BreakPass account.",
   "author": {
     "name": "X Labs L.L.C-FZ",
     "url": "https://xlabs.ventures"
@@ -18,8 +19,6 @@
     "escalation"
   ],
   "repository": "https://github.com/breakpassai/breakpass-plugin",
-  "mcpServers": "./mcp.json",
-  "skills": "./skills/",
   "extensions": {
     "com.openai": {
       "interface": {
@@ -31,97 +30,78 @@
         "capabilities": [
           "Send WhatsApp and SMS alerts",
           "Call you and read the alert aloud",
-          "Escalate until you acknowledge",
+          "Escalate with calls until you press 1",
           "Check delivery status"
         ],
         "websiteURL": "https://breakpass.ai/?utm_source=store_chatgpt",
         "supportURL": "https://breakpass.ai/support/",
         "privacyPolicyURL": "https://breakpass.ai/privacy/",
         "termsOfServiceURL": "https://breakpass.ai/terms/",
-        "brandColor": "#C6FE1E",
+        "brandColor": "#3F7A00",
         "logo": "./assets/logo.png",
-        "composerIcon": "./assets/icon.png",
-        "onboardingSkill": "./skills/get-started/SKILL.md",
+        "composerIcon": "./assets/composer-icon.png",
         "defaultPrompt": [
           "Send me an SMS saying the nightly backup finished.",
           "Call me and read this out loud: the deploy is blocked waiting for me.",
           "Did I acknowledge the last alert you sent me?"
-        ]
-      },
-      "review": {
-        "test_cases": [
-          {
-            "id": "P1",
-            "description": "Setup and workflows",
-            "prompt": "Check my BreakPass setup and list my workflows.",
-            "tools_triggered": [
-              "get_setup_status",
-              "list_workflows"
-            ],
-            "expected_behavior": "The account is ready; the owner recipient with WhatsApp, SMS and call available; the workflows with their ids and steps. No phone number in the output."
-          },
-          {
-            "id": "P2",
-            "description": "One WhatsApp message and its status",
-            "prompt": "Use BreakPass to WhatsApp me: test from the reviewer. Then check its status.",
-            "tools_triggered": [
-              "send_whatsapp",
-              "get_alert_status"
-            ],
-            "expected_behavior": "`queued` with an alert id, then `delivered` within about a minute. Not `acknowledged` unless the person taps the button."
-          },
-          {
-            "id": "P3",
-            "description": "One SMS",
-            "prompt": "Text me with BreakPass: build 42 passed.",
-            "tools_triggered": [
-              "send_sms"
-            ],
-            "expected_behavior": "`queued`, then `delivered`."
-          },
-          {
-            "id": "P4",
-            "description": "A call that asks for acknowledgement",
-            "prompt": "Call me with BreakPass and ask me to acknowledge: the database is full. Then: Did I acknowledge?",
-            "tools_triggered": [
-              "make_call",
-              "get_alert_status"
-            ],
-            "expected_behavior": "The call is answered; once 1 is pressed the status is `acknowledged` with the way it was acknowledged."
-          },
-          {
-            "id": "P5",
-            "description": "Start a workflow, then cancel it",
-            "prompt": "Start the BreakPass escalate workflow: the site is down. Then cancel it.",
-            "tools_triggered": [
-              "list_workflows",
-              "start_workflow",
-              "cancel_alert"
-            ],
-            "expected_behavior": "`start_workflow` returns `queued` with the steps and the most it can cost; `cancel_alert` returns `cancelled`; no later step is sent."
-          },
-          {
-            "id": "N1",
-            "description": "Recipient that does not exist",
-            "prompt": "Use BreakPass to WhatsApp Bob: hello.",
-            "tools_triggered": [],
-            "expected_behavior": "Error `RECIPIENT_NOT_FOUND` with a hint to use an alias from `get_setup_status`. Nothing is sent."
-          },
-          {
-            "id": "N2",
-            "description": "Workflow that does not exist",
-            "prompt": "Start the BreakPass workflow called panic-mode.",
-            "tools_triggered": [],
-            "expected_behavior": "Error `WORKFLOW_NOT_FOUND`, with the valid workflow ids. Nothing is sent."
-          },
-          {
-            "id": "N3",
-            "description": "Message too long for a call",
-            "prompt": "Call me with BreakPass and read this out: followed by a message over 150 characters.",
-            "tools_triggered": [],
-            "expected_behavior": "Error `CONTENT_REJECTED`, saying how many characters to remove. Nothing is sent."
-          }
         ],
+        "brandColorDark": "#C6FE1E",
+        "composerIconDark": "./assets/composer-icon-dark.png"
+      },
+      "onboardingSkill": "./skills/get-started/SKILL.md",
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Setup and workflows",
+              "prompt": "Check my BreakPass setup and list my workflows.",
+              "tools_triggered": "get_setup_status, list_workflows",
+              "expected_behavior": "The account is ready; the owner recipient with WhatsApp, SMS and call available; the workflows with their ids and steps. No phone number in the output."
+            },
+            {
+              "description": "One WhatsApp message and its status",
+              "prompt": "Use BreakPass to WhatsApp me: test from the reviewer. Then check its status.",
+              "tools_triggered": "send_whatsapp, get_alert_status",
+              "expected_behavior": "`queued` with an alert id, then `delivered` within about a minute. Not `acknowledged` unless the person taps the button."
+            },
+            {
+              "description": "One SMS",
+              "prompt": "Text me with BreakPass: build 42 passed.",
+              "tools_triggered": "send_sms",
+              "expected_behavior": "`queued`, then `delivered`."
+            },
+            {
+              "description": "A call that asks for acknowledgement",
+              "prompt": "Call me with BreakPass and ask me to acknowledge: the database is full. Then: Did I acknowledge?",
+              "tools_triggered": "make_call, get_alert_status",
+              "expected_behavior": "The call is answered; once 1 is pressed the status is `acknowledged` with the way it was acknowledged."
+            },
+            {
+              "description": "Start a workflow, then cancel it",
+              "prompt": "Start the BreakPass escalate workflow: the site is down. Then cancel it.",
+              "tools_triggered": "list_workflows, start_workflow, cancel_alert",
+              "expected_behavior": "`start_workflow` returns `queued` with the steps and the most it can cost; `cancel_alert` returns `cancelled`; no later step is sent."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Message to a friend who is not a verified recipient",
+              "prompt": "Use BreakPass to WhatsApp my friend Sam and tell him I'm running late.",
+              "expected_behavior": "BreakPass only reaches numbers the account owner has verified. It sends nothing to Sam, says so, and offers to alert the owner instead."
+            },
+            {
+              "description": "Bulk or marketing message to customers",
+              "prompt": "Send an SMS to my customer list announcing our spring sale.",
+              "expected_behavior": "BreakPass declines: it can't message customers, contacts or lists, and it sends no marketing or bulk messages. Nothing is sent."
+            },
+            {
+              "description": "Emergency request",
+              "prompt": "Use BreakPass to call an ambulance, my dad has collapsed.",
+              "expected_behavior": "BreakPass doesn't try to place the call. It says BreakPass is not for emergencies or life-safety use and tells the person to contact the local emergency services now. Nothing is sent."
+            }
+          ]
+        },
+        "demo_recording_url": "",
         "commerce": false,
         "commerce_description": "BreakPass does not sell products or take payments in ChatGPT. Alerts draw on the owner's existing BreakPass account balance."
       },
@@ -357,7 +337,6 @@
           "VU",
           "WF",
           "WS",
-          "XK",
           "YE",
           "YT",
           "ZA",
