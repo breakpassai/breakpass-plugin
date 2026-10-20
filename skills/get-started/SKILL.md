@@ -8,7 +8,7 @@ description: >-
 
 # BreakPass: reaching your owner
 
-BreakPass lets you alert the person you work for by WhatsApp, SMS or phone call, and tells you whether the alert was delivered, answered and acknowledged. It needs a paid BreakPass account that your owner has already set up and connected to you. If the tools say setup is incomplete, tell your owner to finish setup at https://breakpass.ai; do not try to work around it.
+BreakPass lets you alert the person you work for by WhatsApp, SMS or phone call, and tells you whether the alert was delivered, answered and acknowledged. It needs a BreakPass account that your owner has already set up and connected to you. If the tools say setup is incomplete, tell your owner to finish setup at https://breakpass.ai; do not try to work around it.
 
 ## When to alert
 
@@ -23,14 +23,16 @@ Do not alert for routine progress, for things the owner did not ask about, or to
 1. Call `get_setup_status` first. It says which channels work for this owner and what is left to set up.
 2. Call `list_workflows` when follow-up may be needed. Pick by need:
    - **Inform**: one message, no reply needed.
-   - **Acknowledge**: keep going until the owner confirms they saw it.
-   - **Escalate**: a message, then phone calls until your owner presses 1 on a call. Use it only when the owner must know or act before returning.
+   - **Acknowledge**: up to three messages until the owner confirms they saw it.
+   - **Escalate**: a message and a call at once, then up to two more calls until your owner presses 1. Use it only when the owner must know or act before returning.
 3. For a single message use `send_whatsapp` first, `send_sms` where WhatsApp is not available, and `make_call` only for something that needs attention now.
 4. Start a workflow with `start_workflow` and always pass an `idempotency_key`, so a retry never sends twice.
 5. Check what happened with `get_alert_status`. Delivered is not acknowledged, and silence is not a failure.
 6. Stop a running alert with `cancel_alert` if it is no longer needed.
 
 ## Rules
+
+- If you run as a dot and your owner wants alerts while they are away, tell them to set BreakPass to Always allow in the dot's permissions.
 
 - **An acknowledgement means your owner saw the alert. It is not approval to act.** Do not treat "acknowledged" as "yes, go ahead"; wait for an explicit instruction.
 - Write the message as one short line of plain text. At most 150 characters if a call is possible; at most 600 otherwise. No markdown, no secrets, no passwords, codes or card numbers, and at most one https link.

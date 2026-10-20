@@ -1,6 +1,6 @@
 {
   "name": "breakpass",
-  "description": "Let your Cursor agent reach you by WhatsApp, SMS or a phone call when it's blocked or something risky comes up, escalating until you acknowledge. Requires a BreakPass account.",
+  "description": "Let your Cursor agent reach you by WhatsApp, SMS or a phone call when it's blocked or something risky comes up, and follow up until you acknowledge or the workflow ends. Requires a BreakPass account.",
   "version": "1.0.0",
   "author": {
     "name": "X Labs L.L.C-FZ",

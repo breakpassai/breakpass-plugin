@@ -14,5 +14,14 @@
       "type": "streamable-http",
       "url": "https://mcp.breakpass.ai/mcp"
     }
+  ],
+  "icons": [
+    {
+      "src": "https://raw.githubusercontent.com/breakpassai/breakpass-plugin/main/assets/logo.png",
+      "mimeType": "image/png",
+      "sizes": [
+        "512x512"
+      ]
+    }
   ]
 }
