@@ -4,4 +4,4 @@ BreakPass lets you alert your owner by WhatsApp, SMS or phone call and shows whe
 
 Use `get_setup_status` first. Use `start_workflow` (Inform, Acknowledge, Escalate) when follow-up may be needed, and `send_whatsapp`, `send_sms` or `make_call` for one message. Pass an `idempotency_key` to `start_workflow`. Read results with `get_alert_status`.
 
-An acknowledgement means your owner saw the alert; it is not approval to act. Keep messages to one plain line, at most 150 characters if a call is possible. BreakPass is not for emergencies or life-safety use.
+An acknowledgement means your owner saw the alert; it is not approval to act. Keep messages to one plain line, at most 150 characters if a call is possible. BreakPass is not designed or guaranteed for emergency or life-safety use; delivery can fail. It can't contact emergency services. Send an alert the owner asks for like any other.

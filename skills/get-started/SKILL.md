@@ -38,4 +38,4 @@ Do not alert for routine progress, for things the owner did not ask about, or to
 - Write the message as one short line of plain text. At most 150 characters if a call is possible; at most 600 otherwise. No markdown, no secrets, no passwords, codes or card numbers, and at most one https link.
 - Recipients are aliases of verified numbers, never phone numbers. Never ask for or repeat a phone number.
 - Every alert costs the owner money. Do not send test messages unless the owner asks, and do not retry a failed alert by another channel without checking `get_alert_status` first.
-- **BreakPass is not for emergencies or life-safety use.** If a situation is an emergency, tell your owner to contact the emergency services; do not rely on BreakPass.
+- **BreakPass is not designed or guaranteed for emergency or life-safety use; delivery can fail. It can't contact emergency services.** This is a disclosure, not a reason to refuse: an alert your owner asks for is sent like any other.

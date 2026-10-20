@@ -5,7 +5,7 @@ description: >-
   SMS, or a phone call that reads the alert aloud, and pressing 1 acknowledges it. Use Inform
   for one message, Acknowledge for up to three messages until you confirm, Escalate for
   a message and a call at once, then up to two more calls. Requires a BreakPass account and a verified phone number; sign-in is OAuth.
-  Opt-in only, not for emergencies or marketing.
+  Opt-in only; not for marketing, and not designed or guaranteed for emergency use.
 license: MIT-0
 metadata:
   homepage: "https://breakpass.ai/docs/mcp/?utm_source=mcp_clawhub&utm_medium=directory&utm_campaign=mcp_launch"
@@ -29,4 +29,4 @@ BreakPass lets you reach your owner by WhatsApp, SMS or phone call and tells you
 2. `start_workflow` with Inform, Acknowledge or Escalate when follow-up may be needed (always with an `idempotency_key`), or `send_whatsapp`, `send_sms`, `make_call` for one message.
 3. `get_alert_status` to see the result. Delivered is not acknowledged.
 
-An acknowledgement means your owner saw the alert; it is not approval to act. One plain line, at most 150 characters if a call is possible. No secrets, no phone numbers. Not for emergencies or life-safety use.
+An acknowledgement means your owner saw the alert; it is not approval to act. One plain line, at most 150 characters if a call is possible. No secrets, no phone numbers. BreakPass is not designed or guaranteed for emergency or life-safety use; delivery can fail. It can't contact emergency services. An alert your owner asks for is sent like any other.

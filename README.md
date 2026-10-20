@@ -37,7 +37,7 @@ The skill in `skills/get-started/SKILL.md` tells the agent when and how to alert
 
 ## What it does not do
 
-BreakPass is **not for emergencies or life-safety use.** An acknowledgement means you saw the alert; it is not a go-ahead for your agent. Your phone number never appears in a tool result.
+BreakPass is **not designed or guaranteed for emergency or life-safety use**; delivery can fail, and it can't contact emergency services. An acknowledgement means you saw the alert; it is not a go-ahead for your agent. Your phone number never appears in a tool result.
 
 ## Files
 

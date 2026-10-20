@@ -31,4 +31,4 @@ Ask the agent to call `get_setup_status`. It should answer with the account's ch
 
 ## Notes for the agent
 
-An acknowledgement means the user saw the alert; it is not approval to act. BreakPass is not for emergencies or life-safety use. Read `skills/get-started/SKILL.md` before sending anything.
+An acknowledgement means the user saw the alert; it is not approval to act. BreakPass is not designed or guaranteed for emergency or life-safety use; delivery can fail. It can't contact emergency services. An alert the owner asks for is sent like any other. Read `skills/get-started/SKILL.md` before sending anything.
