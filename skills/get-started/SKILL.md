@@ -1,6 +1,9 @@
 ---
 name: get-started
-description: Use BreakPass when you need to reach your owner outside the chat: a long task is done, a decision needs them, or something went wrong. Sends a WhatsApp message, an SMS or a phone call and tells you whether they got it.
+description: >-
+  Use BreakPass when you need to reach your owner outside the chat: a long task is done,
+  a decision needs them, or something went wrong. Sends a WhatsApp message, an SMS or a
+  phone call and tells you whether they got it. Requires a BreakPass account.
 ---
 
 # BreakPass: reaching your owner
@@ -21,7 +24,7 @@ Do not alert for routine progress, for things the owner did not ask about, or to
 2. Call `list_workflows` when follow-up may be needed. Pick by need:
    - **Inform**: one message, no reply needed.
    - **Acknowledge**: keep going until the owner confirms they saw it.
-   - **Escalate**: a message and a call at once, then calls, until they acknowledge. Use it only when the owner must know or act before returning.
+   - **Escalate**: a message, then phone calls until your owner presses 1 on a call. Use it only when the owner must know or act before returning.
 3. For a single message use `send_whatsapp` first, `send_sms` where WhatsApp is not available, and `make_call` only for something that needs attention now.
 4. Start a workflow with `start_workflow` and always pass an `idempotency_key`, so a retry never sends twice.
 5. Check what happened with `get_alert_status`. Delivered is not acknowledged, and silence is not a failure.

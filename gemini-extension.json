@@ -1,7 +1,7 @@
 {
   "name": "breakpass",
   "version": "1.0.0",
-  "description": "Let your AI agent reach you by WhatsApp, SMS or phone call, and see if you got it.",
+  "description": "Let your AI agent reach you by WhatsApp, SMS or phone call, and see if you got it. Requires a BreakPass account.",
   "mcpServers": {
     "breakpass": {
       "httpUrl": "https://mcp.breakpass.ai/mcp"

@@ -1,7 +1,8 @@
 {
   "name": "breakpass",
+  "displayName": "BreakPass",
   "version": "1.0.0",
-  "description": "Let Claude reach you by WhatsApp, SMS or a phone call when something needs you, escalating until you acknowledge.",
+  "description": "Let Claude reach you by WhatsApp, SMS or a phone call when something needs you, escalating until you acknowledge. Requires a BreakPass account.",
   "author": {
     "name": "X Labs L.L.C-FZ",
     "url": "https://xlabs.ventures"
@@ -19,5 +20,10 @@
   ],
   "repository": "https://github.com/breakpassai/breakpass-plugin",
   "skills": "./skills/",
-  "mcpServers": "./.mcp.json"
+  "mcpServers": "./.mcp.json",
+  "icon": "./assets/logo.png",
+  "documentationUrl": "https://breakpass.ai/docs/mcp/",
+  "supportUrl": "https://breakpass.ai/support/",
+  "privacyPolicyUrl": "https://breakpass.ai/privacy/",
+  "termsOfServiceUrl": "https://breakpass.ai/terms/"
 }

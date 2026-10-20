@@ -5,11 +5,11 @@ BreakPass is a **remote MCP server**. Nothing is installed or run locally: you a
 - **URL:** `https://mcp.breakpass.ai/mcp`
 - **Transport:** Streamable HTTP (not SSE, not stdio)
 - **Auth:** OAuth 2.1 with PKCE. The client discovers it from `/.well-known/oauth-protected-resource` after the first request returns `401`. Dynamic client registration and client ID metadata documents are supported. There is no API key and no environment variable to set.
-- **Account:** the user needs a paid BreakPass account (https://breakpass.ai/pricing/). They sign in and approve access in their browser.
+- **Account:** the user needs a BreakPass account (https://breakpass.ai). They sign in and approve access in their browser.
 
 ## Config
 
-Most clients (Cursor, Cline, Windsurf):
+Most clients that take a remote server URL:
 
 ```json
 {
