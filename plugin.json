@@ -65,10 +65,10 @@
               "expected_behavior": "`queued` with an alert id, then `delivered` within about a minute. Not `acknowledged` unless the person taps the button."
             },
             {
-              "description": "One SMS",
-              "prompt": "Text me with BreakPass: build 42 passed.",
-              "tools_triggered": "send_sms",
-              "expected_behavior": "`queued`, then `delivered`."
+              "description": "Inform workflow",
+              "prompt": "Use the BreakPass Inform workflow to tell me the nightly backup finished.",
+              "tools_triggered": "list_workflows, start_workflow",
+              "expected_behavior": "`queued`, then the WhatsApp message is delivered."
             },
             {
               "description": "A call that asks for acknowledgement",
