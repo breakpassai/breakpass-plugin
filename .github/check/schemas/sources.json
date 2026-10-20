@@ -1,0 +1,22 @@
+{
+  "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json": {
+    "file": "agent-plugins-1.0.0-plugin.schema.json",
+    "fetched": "2026-10-20"
+  },
+  "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json": {
+    "file": "agent-plugins-1.0.0-mcp.schema.json",
+    "fetched": "2026-10-20"
+  },
+  "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json": {
+    "file": "mcp-registry-2025-12-11-server.schema.json",
+    "fetched": "2026-10-20"
+  },
+  "https://json.schemastore.org/claude-code-plugin-manifest.json": {
+    "file": "claude-code-plugin-manifest.schema.json",
+    "fetched": "2026-10-20"
+  },
+  "https://raw.githubusercontent.com/cursor/plugins/main/schemas/plugin.schema.json": {
+    "file": "cursor-plugin.schema.json",
+    "fetched": "2026-10-20"
+  }
+}

@@ -1,0 +1,31 @@
+name: check
+
+# Manifests against their published schemas, SKILL.md front matter, and brand contrast (text on lime is dark ink;
+# WCAG AA 4.5:1). What each check does: .github/check/check.mjs. Nothing is built, published or deployed here.
+# Actions are pinned by full commit SHA. Node is the runner's preinstalled one (the script needs fetch, Node 18+).
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: check-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: check
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: install (exact versions from the lockfile, no install scripts)
+        run: npm ci --ignore-scripts --no-audit --no-fund
+        working-directory: .github/check
+      - run: node --version && node .github/check/check.mjs
