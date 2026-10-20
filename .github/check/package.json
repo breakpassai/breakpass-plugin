@@ -1,0 +1,11 @@
+{
+  "name": "breakpass-plugin-check",
+  "private": true,
+  "description": "Repository checks for the BreakPass plugin (CI only; see check.mjs).",
+  "type": "module",
+  "dependencies": {
+    "ajv": "8.20.0",
+    "ajv-formats": "3.0.1",
+    "yaml": "2.9.1"
+  }
+}
