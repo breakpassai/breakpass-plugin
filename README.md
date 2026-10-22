@@ -15,7 +15,7 @@ Each client needs the same server address: `https://mcp.breakpass.ai/mcp` (Strea
 | **Cursor** | [Add to Cursor](https://cursor.com/install-mcp?name=breakpass&config=eyJ1cmwiOiJodHRwczovL21jcC5icmVha3Bhc3MuYWkvbWNwIn0=). Cursor asks you to confirm, then opens BreakPass sign-in. |
 | **Claude** (claude.ai, Desktop) | Settings, Connectors, Add custom connector. Paste the address and sign in. |
 | **Claude Code** | `claude mcp add --transport http breakpass https://mcp.breakpass.ai/mcp`, then run `/mcp` and sign in. |
-| **ChatGPT** | Turn on developer mode in the app settings, add a custom app with the address, and sign in. |
+| **ChatGPT** | Open Settings › Plugins › Browse directory › Add › Add custom MCP server, enter the name BreakPass and the address, and sign in. |
 | **Grok** | grok.com, Connectors, Custom connector: paste the address and sign in. |
 | **Gemini CLI** | `gemini extensions install https://github.com/breakpassai/breakpass-plugin` |
 | **Any MCP client** | Add a remote server with the address above. See [llms-install.md](llms-install.md). |
