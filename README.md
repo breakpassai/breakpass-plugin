@@ -46,7 +46,7 @@ BreakPass is **not designed or guaranteed for emergency or life-safety use**; de
 - `gemini-extension.json`, `GEMINI.md`: Gemini CLI.
 - `server.json`: the official MCP Registry (`ai.breakpass/breakpass`).
 - `clawhub/breakpass/SKILL.md`: the ClawHub skill (MIT-0).
-- `grok-template/`: the Grok Bot template.
+- `grok-template/`: Breaky, the Grok Bot template (the full template is published from Grok Bot; this file is its short form).
 - `assets/`: logos.
 
 ## Licence

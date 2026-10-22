@@ -1,10 +1,10 @@
-# Grok Bot template: BreakPass alerts
+# Breaky for Grok Bot
 
 A Grok template keeps instructions, skills and routines, but not MCP servers. So step 1 of this template adds the BreakPass connector. The only URL in it is the public connector address, `https://mcp.breakpass.ai/mcp`.
 
 ## Name and description
 
-**BreakPass alerts.** Your Grok bot reaches you by WhatsApp, SMS or phone call when something needs you, and checks whether you got it. Requires a BreakPass account.
+**Breaky.** Your Grok bot reaches you by WhatsApp, SMS or phone call when something needs you, and checks whether you got it. Requires a BreakPass account.
 
 ## Step 1: add the BreakPass connector
 
