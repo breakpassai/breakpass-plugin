@@ -24,7 +24,7 @@ Do not alert for routine progress, for things the owner did not ask about, or to
 2. Call `list_workflows` when follow-up may be needed. Pick by need:
    - **Inform**: one message, no reply needed.
    - **Acknowledge**: up to three messages until the owner confirms they saw it.
-   - **Escalate**: a message and a call at once, then up to two more calls until your owner presses 1. Use it only when the owner must know or act before returning.
+   - **Escalate**: a message, then calls until the owner acknowledges or the workflow ends. Use it only when the owner must know or act before returning.
 3. For a single message use `send_whatsapp` first, `send_sms` where WhatsApp is not available, and `make_call` only for something that needs attention now.
 4. Start a workflow with `start_workflow` and always pass an `idempotency_key`, so a retry never sends twice.
 5. Check what happened with `get_alert_status`. Delivered is not acknowledged, and silence is not a failure.
