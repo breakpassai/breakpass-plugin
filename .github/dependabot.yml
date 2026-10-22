@@ -1,0 +1,16 @@
+# Q-H-046: the GitHub Actions this repository uses, updated weekly in one grouped pull request. (There is no package manager here.)
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "05:00"
+      timezone: UTC
+    open-pull-requests-limit: 2
+    commit-message:
+      prefix: "ci"
+    groups:
+      actions:
+        patterns: ["*"]
