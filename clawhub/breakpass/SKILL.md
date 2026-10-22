@@ -2,9 +2,9 @@
 name: breakpass
 description: >-
   Lets your agent reach you when it matters through BreakPass (hosted MCP): WhatsApp,
-  SMS, or a phone call that reads the alert aloud until you press 1. Use Inform for one
-  message, Acknowledge for repeats until you confirm, Escalate for a message and then
-  calls. Requires a BreakPass account and a verified phone number; sign-in is OAuth.
+  SMS, or a phone call that reads the alert aloud, and pressing 1 acknowledges it. Use Inform
+  for one message, Acknowledge for up to three messages until you confirm, Escalate for
+  a message and a call at once, then up to two more calls. Requires a BreakPass account and a verified phone number; sign-in is OAuth.
   Opt-in only, not for emergencies or marketing.
 license: MIT-0
 metadata:

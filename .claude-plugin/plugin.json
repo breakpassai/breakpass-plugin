@@ -2,7 +2,7 @@
   "name": "breakpass",
   "displayName": "BreakPass",
   "version": "1.0.0",
-  "description": "Let Claude reach you by WhatsApp, SMS or a phone call when something needs you, escalating until you acknowledge. Requires a BreakPass account.",
+  "description": "Let Claude reach you by WhatsApp, SMS or a phone call when something needs you, and follow up until you acknowledge or the workflow ends. Requires a BreakPass account.",
   "author": {
     "name": "X Labs L.L.C-FZ",
     "url": "https://xlabs.ventures"

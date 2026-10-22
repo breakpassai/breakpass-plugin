@@ -29,7 +29,7 @@ Each client needs the same server address: `https://mcp.breakpass.ai/mcp` (Strea
 | `send_whatsapp` | Sends one WhatsApp message to your verified number. |
 | `send_sms` | Sends one SMS to your verified number. |
 | `make_call` | Calls you and reads the message aloud. |
-| `start_workflow` | Starts a workflow: Inform, Acknowledge, or Escalate (a message, then calls until you press 1). |
+| `start_workflow` | Starts a workflow: Inform (one message), Acknowledge (up to three messages until you confirm) or Escalate (a message and a call at once, then up to two more calls until you press 1). |
 | `get_alert_status` | Says whether an alert was delivered, answered and acknowledged. |
 | `cancel_alert` | Stops an alert that is no longer needed. |
 
